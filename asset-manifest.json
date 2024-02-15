@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/restaurant-dashboard/static/css/main.a766fdc8.css",
-    "main.js": "/restaurant-dashboard/static/js/main.91aff13a.js",
-    "static/js/592.62eed5ff.chunk.js": "/restaurant-dashboard/static/js/592.62eed5ff.chunk.js",
-    "index.html": "/restaurant-dashboard/index.html",
-    "main.a766fdc8.css.map": "/restaurant-dashboard/static/css/main.a766fdc8.css.map",
-    "main.91aff13a.js.map": "/restaurant-dashboard/static/js/main.91aff13a.js.map",
-    "592.62eed5ff.chunk.js.map": "/restaurant-dashboard/static/js/592.62eed5ff.chunk.js.map"
+    "main.css": "/restaurant-dashboard/revenues/static/css/main.a766fdc8.css",
+    "main.js": "/restaurant-dashboard/revenues/static/js/main.b6b64b9d.js",
+    "static/js/592.62eed5ff.chunk.js": "/restaurant-dashboard/revenues/static/js/592.62eed5ff.chunk.js",
+    "index.html": "/restaurant-dashboard/revenues/index.html",
+    "main.a766fdc8.css.map": "/restaurant-dashboard/revenues/static/css/main.a766fdc8.css.map",
+    "main.b6b64b9d.js.map": "/restaurant-dashboard/revenues/static/js/main.b6b64b9d.js.map",
+    "592.62eed5ff.chunk.js.map": "/restaurant-dashboard/revenues/static/js/592.62eed5ff.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a766fdc8.css",
-    "static/js/main.91aff13a.js"
+    "static/js/main.b6b64b9d.js"
   ]
 }
