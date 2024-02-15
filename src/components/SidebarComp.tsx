@@ -1,34 +1,39 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { FaHome, FaPlusSquare, FaTrash, FaProductHunt } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SidebarComp = () => {
+interface SidebarCompProps {
+  isNarrow: boolean;
+}
+
+const SidebarComp: React.FC<SidebarCompProps> = ({ isNarrow }) => {
+  const sidebarStyle = {
+    width: isNarrow ? "80px" : "280px",
+    height: "100vh"
+  };
+
   return (
-    <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: "280px", height: "100vh"}}>
-      <a href="/revenues" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span className="fs-4">Admin Dashboard</span>
-      </a>
-      <hr />
+    <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{ ...sidebarStyle }}>
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <NavLink to="/revenues" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            Revenues Dashboard
+          <NavLink to="/restaurant-dashboard" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"} end>
+            <FaHome /> {isNarrow ? "" : "Dashboard"}
           </NavLink>
         </li>
         <li>
-          <NavLink to="/add-order" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            Add Order
+          <NavLink to="/restaurant-dashboard/add-order" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
+            <FaPlusSquare /> {isNarrow ? "" : "Add Order"}
           </NavLink>
         </li>
         <li>
-          <NavLink to="/add-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            Add Product
+          <NavLink to="/restaurant-dashboard/add-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
+            <FaProductHunt /> {isNarrow ? "" : "Add Product"}
           </NavLink>
         </li>
         <li>
-          <NavLink to="/delete-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            Delete Product
+          <NavLink to="/restaurant-dashboard/delete-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
+            <FaTrash /> {isNarrow ? "" : "Delete Product"}
           </NavLink>
         </li>
       </ul>

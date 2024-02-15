@@ -1,6 +1,6 @@
 {
   "name": "restaurant-dashboard",
-  "homepage": "https://mohammad-nour-alawad.github.io/restaurant-dashboard/revenues",
+  "homepage": "https://mohammad-nour-alawad.github.io/restaurant-dashboard/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,6 +22,7 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.10.5",
