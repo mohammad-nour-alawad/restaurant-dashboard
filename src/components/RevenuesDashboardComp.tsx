@@ -13,7 +13,7 @@ const RevenuesDashboardComp = () => {
 
   const [orders, serOrders] = useState<Order[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState<{key: string; direction: string} | null>(null)
+  const [sortConfig, setSortConfig] = useState<{ key: string; direction: string } | null>(null)
 
   const [barChartData, setBarChartData] = useState<ChartData<'bar'>>({
     labels: [],
@@ -42,8 +42,7 @@ const RevenuesDashboardComp = () => {
 
     orders.forEach((order) => {
 
-      console.log(order.date);
-      const date = new Date(order.date).toLocaleDateString();
+      const date = new Date((order.date as any).seconds * 1000).toLocaleDateString();
       revenuesByDate[date] = (revenuesByDate[date] || 0) + order.total;
 
       order.products.forEach((cardProd: CartProduct) => {
@@ -80,39 +79,40 @@ const RevenuesDashboardComp = () => {
     });
   };
 
-  
-const sortedAndFilteredOrders = useMemo(() => {
-  let filteredOrders = orders;
 
-  if (searchTerm) {
-    filteredOrders = orders.filter(order =>
-      order.products.some(p => 
-        p.product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }
+  const sortedAndFilteredOrders = useMemo(() => {
+    let filteredOrders = orders;
 
-  if (!sortConfig) return filteredOrders;
-
-  return [...filteredOrders].sort((a, b) => {
-    // For sorting dates, convert them to timestamps
-    if (sortConfig.key === 'date') {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
-      return (sortConfig.direction === 'ascending' ? dateA - dateB : dateB - dateA);
+    if (searchTerm) {
+      filteredOrders = orders.filter(order =>
+        order.products.some(p =>
+          p.product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
     }
 
-    // For sorting numbers (like total)
-    if (sortConfig.key === 'total') {
-      return (sortConfig.direction === 'ascending' ? a.total - b.total : b.total - a.total);
-    }
+    if (!sortConfig) return filteredOrders;
 
-    return 0;
-  });
-}, [orders, searchTerm, sortConfig]);
+    return [...filteredOrders].sort((a, b) => {
+      // For sorting dates, convert them to timestamps
+      if (sortConfig.key === 'date') {
+        const dateA = new Date((a.date as any).seconds * 1000);
+        const dateB = new Date((b.date as any).seconds * 1000);
+
+        return (sortConfig.direction === 'ascending' ? dateA.getSeconds() - dateB.getSeconds() : dateB.getSeconds() - dateA.getSeconds());
+      }
+
+      // For sorting numbers (like total)
+      if (sortConfig.key === 'total') {
+        return (sortConfig.direction === 'ascending' ? a.total - b.total : b.total - a.total);
+      }
+
+      return 0;
+    });
+  }, [orders, searchTerm, sortConfig]);
 
   // Sort function
-  const requestSort = (key :string) => {
+  const requestSort = (key: string) => {
     let direction = 'ascending';
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
       direction = 'descending';
@@ -154,27 +154,32 @@ const sortedAndFilteredOrders = useMemo(() => {
             <table className="table table-striped table-hover">
               <thead>
                 <tr>
-                <th>
-                  <button onClick={() => requestSort('date')} className="sort-button">
-                    Date {sortConfig?.key === 'date' ? (sortConfig.direction === 'ascending' ? '↑' : '↓') : ''}
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => requestSort('total')} className="sort-button">
-                    Total {sortConfig?.key === 'total' ? (sortConfig.direction === 'ascending' ? '↑' : '↓') : ''}
-                  </button>
-                </th>
+                  <th>
+                    <button
+                      onClick={() => requestSort('date')}
+                      className="btn btn-outline-primary"
+                    >
+                      Date {sortConfig?.key === 'date' ? (sortConfig.direction === 'ascending' ? '↑' : '↓') : ''}
+                    </button>
+                  </th>
+                  <th>
+                    <button
+                      onClick={() => requestSort('total')}
+                      className="btn btn-outline-primary"
+                    >
+                      Total {sortConfig?.key === 'total' ? (sortConfig.direction === 'ascending' ? '↑' : '↓') : ''}
+                    </button>
+                  </th>
+
                   <th>Products</th>
-                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedAndFilteredOrders.map((order, index) => (
                   <tr key={index}>
-                    <td>{new Date(order.date).toLocaleDateString()}</td>
+                    <td>{new Date((order.date as any).seconds * 1000).toLocaleDateString()}</td>
                     <td>{order.total.toFixed(2)}</td>
-                    <td>{order.products.map(p => p.product.name).join(', ')}</td>
-                    <td>{order.products.map(p => p.quantity).join(', ')}</td>
+                    <td style={{ whiteSpace: 'pre-line' }}>{order.products.map(p => p.product.name + ': ' + p.quantity).join('\n')}</td>
                   </tr>
                 ))}
               </tbody>

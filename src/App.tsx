@@ -14,13 +14,13 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSidebarNarrow(window.innerWidth < 768);
+      setIsSidebarNarrow(window.innerWidth < 1080);
     };
 
     handleResize();
 
     window.addEventListener('resize', handleResize);
-    
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

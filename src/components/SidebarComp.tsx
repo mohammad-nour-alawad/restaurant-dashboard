@@ -9,7 +9,7 @@ interface SidebarCompProps {
 
 const SidebarComp: React.FC<SidebarCompProps> = ({ isNarrow }) => {
   const sidebarStyle = {
-    width: isNarrow ? "80px" : "280px",
+    width: isNarrow ? "80px" : "200px",
     height: "100vh"
   };
 
@@ -18,22 +18,22 @@ const SidebarComp: React.FC<SidebarCompProps> = ({ isNarrow }) => {
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
           <NavLink to="/restaurant-dashboard" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"} end>
-            <FaHome /> {isNarrow ? "" : "Dashboard"}
+            <FaHome style={{marginBottom: 5}}/> {isNarrow ? "" : "Dashboard"}
           </NavLink>
         </li>
         <li>
           <NavLink to="/restaurant-dashboard/add-order" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            <FaPlusSquare /> {isNarrow ? "" : "Add Order"}
+            <FaPlusSquare style={{marginBottom: 5}}/> {isNarrow ? "" : "Add Order"}
           </NavLink>
         </li>
         <li>
           <NavLink to="/restaurant-dashboard/add-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            <FaProductHunt /> {isNarrow ? "" : "Add Product"}
+            <FaProductHunt style={{marginBottom: 5}}/> {isNarrow ? "" : "Add Product"}
           </NavLink>
         </li>
         <li>
           <NavLink to="/restaurant-dashboard/delete-product" className={({ isActive }) => isActive ? "nav-link link-dark active" : "nav-link link-dark"}>
-            <FaTrash /> {isNarrow ? "" : "Delete Product"}
+            <FaTrash style={{marginBottom: 5}}/> {isNarrow ? "" : "Delete Product"}
           </NavLink>
         </li>
       </ul>

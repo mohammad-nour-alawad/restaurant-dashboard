@@ -8,9 +8,9 @@ interface TopNavCompProps {
 
 const TopNavComp: React.FC<TopNavCompProps> = ({ toggleSidebar, isSidebarNarrow }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light ml-500">
-      <button className="btn ms-2" onClick={toggleSidebar}>
-        {isSidebarNarrow ? <FaTimes size="1.5em" /> : <FaBars size="1.5em" />}
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <button className="btn ms-3" onClick={toggleSidebar}>
+        {isSidebarNarrow ?  <FaBars size="1.5em" /> : <FaTimes size="1.5em" /> }
       </button>
 
       <div className="navbar-brand ms-auto">ADMIN</div>

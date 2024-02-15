@@ -13,13 +13,7 @@ code {
 }
 
 .chart-container {
-  height: 400px;
-}
-
-@media (max-width: 768px) {
-  .chart-container {
-    height: 300px; 
-  }
+  height: 300px;
 }
 
 .quantity-controls {
@@ -34,4 +28,13 @@ code {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+}
+
+.product-card {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  border-color: blue;
 }

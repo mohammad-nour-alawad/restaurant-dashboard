@@ -45,7 +45,7 @@ const DeleteProductComp = () => {
       <div className="row">
         {products.map(product => (
           <div key={product.id} className='col-sm-12 col-md-6 col-lg-4 mb-4 px-2'>
-            <div className='card'>
+            <div className='card product-card'>
               <div className='card-body'>
                 <h5 className='card-title'>{product.name}</h5>
                 <p className='card-text'>{product.description}</p>
