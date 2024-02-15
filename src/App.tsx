@@ -1,25 +1,30 @@
+
+// src/App.tsx or your layout component
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SidebarComp from './components/SidebarComp';
+import RevenuesDashboardComp from './components/RevenuesDashboardComp';
+import AddOrderComp from './components/AddOrderComp';
+import AddProductComp from './components/AddProductComp';
+import DeleteProductComp from './components/DeleteProductComp';
+
+// Import other components/pages
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="d-flex">
+        <SidebarComp />
+        <div className="flex-grow-1 p-3">
+          <Routes>
+            <Route path="/revenues" element={<RevenuesDashboardComp />} />
+            <Route path="/add-order" element={<AddOrderComp />} />
+            <Route path="/add-product" element={<AddProductComp />} />
+            <Route path="/delete-product" element={<DeleteProductComp />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
