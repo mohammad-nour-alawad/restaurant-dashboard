@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const DeleteProductComp = () => {
 
   const [products, setProducts] = useState<Product[]>([])
-  
+
   const fetchProds = async () => {
     const prods = await getProducts();
     setProducts(prods);
@@ -41,27 +41,35 @@ const DeleteProductComp = () => {
   };
 
   const renderCards = () => {
-    return products.map(product => (
-      <div key={product.id} className='card'>
-        <div className='card-body'>
-          <h5 className='card-title'>{product.name}</h5>
-          <p className='card-text'>{product.description}</p>
-          {product.imageUrl && <img src={product.imageUrl} alt={product.name} />}
-          <div className='quantity-controls'>
-            <button className="btn btn-danger" onClick={() => handleDelete(product.id ? product.id : '')}>Delete</button>
+    return (
+      <div className="row">
+        {products.map(product => (
+          <div key={product.id} className='col-sm-12 col-md-6 col-lg-4 mb-4 px-2'>
+            <div className='card'>
+              <div className='card-body'>
+                <h5 className='card-title'>{product.name}</h5>
+                <p className='card-text'>{product.description}</p>
+                {product.imageUrl && <img src={product.imageUrl} alt={product.name} className="img-fluid" />}
+                <div className='quantity-controls mt-2'>
+                  <button className="btn btn-danger" onClick={() => handleDelete(product.id ?? '')}>Delete</button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    ));
+    );
   };
-
-
+  
   return (
     <div>
       <h2>Delete Product</h2>
-      {renderCards()}
+      <div className='product-cards'>
+        {renderCards()}
+      </div>
     </div>
   );
+  
 };
 
 export default DeleteProductComp;

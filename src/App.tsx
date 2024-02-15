@@ -1,7 +1,7 @@
 
 // src/App.tsx or your layout component
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SidebarComp from './components/SidebarComp';
 import RevenuesDashboardComp from './components/RevenuesDashboardComp';
 import AddOrderComp from './components/AddOrderComp';
@@ -21,6 +21,7 @@ function App() {
             <Route path="/add-order" element={<AddOrderComp />} />
             <Route path="/add-product" element={<AddProductComp />} />
             <Route path="/delete-product" element={<DeleteProductComp />} />
+            <Route path="*" element={<Navigate to="/revenues" />} />
           </Routes>
         </div>
       </div>

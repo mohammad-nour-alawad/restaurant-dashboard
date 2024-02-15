@@ -13,11 +13,25 @@ code {
 }
 
 .chart-container {
-  height: 400px; /* You can adjust this as needed */
+  height: 400px;
 }
 
 @media (max-width: 768px) {
   .chart-container {
-    height: 300px; /* Smaller height for mobile devices */
+    height: 300px; 
   }
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-value {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
